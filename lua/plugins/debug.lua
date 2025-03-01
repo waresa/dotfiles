@@ -122,9 +122,26 @@ return {
   },
   {
     "theHamsta/nvim-dap-virtual-text",
-    config = true,
     dependencies = {
       { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    },
+    opts = {
+      enabled = true, -- Enable this plugin
+      enabled_commands = true, -- Create commands DapVirtualTextEnable, DapVirtualTextDisable, etc.
+      highlight_changed_variables = true, -- Highlight changed values with NvimDapVirtualTextChanged
+      highlight_new_as_changed = true, -- Highlight new variables in the same way as changed variables
+      show_stop_reason = true, -- Show stop reason when stopped for exceptions
+      commented = false, -- Prefix virtual text with comment string
+      only_first_definition = true, -- Only show virtual text at first definition
+      all_references = false, -- Show virtual text on all references of the variable
+      all_frames = false, -- Show virtual text for all stack frames not only current
+      virt_text_pos = "eol", -- Position of virtual text, see `:h nvim_buf_set_extmark()`
+      virt_text_win_col = nil, -- Position the virtual text at a fixed window column (starting from the first text column)
+      virt_lines = false, -- Show virtual lines instead of virtual text (will flicker!)
+      virt_text_highlight = "Comment", -- Highlight virtual text with this highlight group
+      display_callback = function(variable, buf, stackframe, node, options)
+        return " = " .. variable.value
+      end,
     },
   },
   {

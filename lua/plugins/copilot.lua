@@ -1,21 +1,22 @@
 return {
   "zbirenbaum/copilot.lua",
   cmd = "Copilot",
-  build = ":Copilot auth",
-  opts = {
-    suggestion = {
-      enabled = true,
-      auto_trigger = true,
-      keymap = {
-        accept = "<Tab>",
-        next = "<M-]>",
-        prev = "<M-[>",
-        dismiss = "<C-]>",
+  event = "InsertEnter",
+  config = function()
+    require("copilot").setup({
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        keymap = {
+          accept = "<Tab>",
+          accept_word = false,
+          accept_line = false,
+          next = "<C-j>",
+          prev = "<C-k>",
+          dismiss = "<C-\\>",
+        },
       },
-    },
-    filetypes = {
-      markdown = true,
-      help = true,
-    },
-  },
+      panel = { enabled = false },
+    })
+  end,
 }
