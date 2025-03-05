@@ -29,3 +29,9 @@ vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" 
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 vim.keymap.set("n", "<leader>o", "mzo<Esc>`z", { desc = "Insert blank line below" })
 vim.keymap.set("n", "<leader>O", "mzO<Esc>`z", { desc = "Insert blank line above" })
+
+-- UUID generation and insertion
+vim.keymap.set('n', '<leader>uu', function()
+    local uuid = vim.fn.system('uuidgen'):gsub('\n', ''):lower()
+    vim.api.nvim_put({uuid}, '', false, true)
+end, { desc = 'Insert UUID' })
