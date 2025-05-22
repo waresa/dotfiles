@@ -35,3 +35,12 @@ vim.keymap.set('n', '<leader>uu', function()
     local uuid = vim.fn.system('uuidgen'):gsub('\n', ''):lower()
     vim.api.nvim_put({uuid}, '', false, true)
 end, { desc = 'Insert UUID' })
+
+-- Map '\' to 'Esc' in all modes
+map({"n", "v", "s", "o", "i", "c", "x", "l"}, "\\", "<Esc>", { desc = "Map \\ to Esc in all modes" })
+
+
+vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { silent = true })
+
+
+-- existing code...
