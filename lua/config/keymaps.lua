@@ -42,5 +42,4 @@ map({"n", "v", "s", "o", "i", "c", "x", "l"}, "\\", "<Esc>", { desc = "Map \\ to
 
 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { silent = true })
 
-
 -- existing code...

@@ -6,6 +6,9 @@ require("conform").setup({
   formatters_by_ft = {
     javascript = { "prettier", "eslint_d" },
     typescript = { "prettier", "eslint_d" },
+    javascriptreact = { "prettier", "eslint_d" },
+    typescriptreact = { "prettier", "eslint_d" },
+    jsx = { "prettier", "eslint_d" },
     -- add other filetypes as needed
   },
   -- Optionally, configure format on save through conform if you prefer
@@ -16,9 +19,9 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = format_on_save,
   pattern = "*",
   callback = function()
-    -- If it isnt js or ts then return
+    -- If it isnt js, ts, jsx, or tsx then return
     local filetype = vim.bo.filetype
-    if filetype ~= "javascript" and filetype ~= "typescript" then
+    if filetype ~= "javascript" and filetype ~= "typescript" and filetype ~= "javascriptreact" and filetype ~= "typescriptreact" and filetype ~= "jsx" then
       return
     end
     print("Formatting with conform...")
